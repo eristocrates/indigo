@@ -70,6 +70,9 @@ func main() {
 		&cli.BoolFlag{
 			Name: "gen-handlers",
 		},
+		&cli.BoolFlag{
+			Name: "emit-ontology",
+		},
 		&cli.StringSliceFlag{
 			Name: "types-import",
 		},
@@ -176,7 +179,20 @@ func main() {
 			}
 
 		} else {
-			return lex.Run(schemas, externalSchemas, packages)
+			if err := lex.Run(schemas, externalSchemas, packages); err != nil {
+				return err
+			}
+		}
+
+		if cctx.Bool("emit-ontology") {
+			outdir := cctx.String("outdir")
+			if outdir == "" {
+				return fmt.Errorf("must specify output directory (--outdir)")
+			}
+			ttl := filepath.Join(outdir, "lexicon.ttl")
+			if err := lex.EmitOntology(schemas, ttl); err != nil {
+				return err
+			}
 		}
 
 		return nil
