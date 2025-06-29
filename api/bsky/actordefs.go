@@ -568,15 +568,13 @@ type ActorDefs_VerificationView struct {
 //
 // Metadata about the requesting account's relationship with the subject account. Only has meaningful content for authed requests.
 type ActorDefs_ViewerState struct {
-	// activitySubscription: This property is present only in selected cases, as an optimization.
 	ActivitySubscription *NotificationDefs_ActivitySubscription `json:"activitySubscription,omitempty" cborgen:"activitySubscription,omitempty"`
 	BlockedBy            *bool                                  `json:"blockedBy,omitempty" cborgen:"blockedBy,omitempty"`
 	Blocking             *string                                `json:"blocking,omitempty" cborgen:"blocking,omitempty"`
 	BlockingByList       *GraphDefs_ListViewBasic               `json:"blockingByList,omitempty" cborgen:"blockingByList,omitempty"`
 	FollowedBy           *string                                `json:"followedBy,omitempty" cborgen:"followedBy,omitempty"`
 	Following            *string                                `json:"following,omitempty" cborgen:"following,omitempty"`
-	// knownFollowers: This property is present only in selected cases, as an optimization.
-	KnownFollowers *ActorDefs_KnownFollowers `json:"knownFollowers,omitempty" cborgen:"knownFollowers,omitempty"`
-	Muted          *bool                     `json:"muted,omitempty" cborgen:"muted,omitempty"`
-	MutedByList    *GraphDefs_ListViewBasic  `json:"mutedByList,omitempty" cborgen:"mutedByList,omitempty"`
+	KnownFollowers       *ActorDefs_KnownFollowers              `json:"knownFollowers,omitempty" cborgen:"knownFollowers,omitempty"`
+	Muted                *bool                                  `json:"muted,omitempty" cborgen:"muted,omitempty"`
+	MutedByList          *GraphDefs_ListViewBasic               `json:"mutedByList,omitempty" cborgen:"mutedByList,omitempty"`
 }
