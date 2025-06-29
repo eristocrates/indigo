@@ -8,8 +8,9 @@ import (
 	"path/filepath"
 	"strings"
 
-	lex "github.com/bluesky-social/indigo/lex"
 	cli "github.com/urfave/cli/v2"
+
+	lex "github.com/bluesky-social/indigo/lex"
 )
 
 func findSchemas(dir string, out []string) ([]string, error) {
@@ -189,7 +190,7 @@ func main() {
 			if outdir == "" {
 				return fmt.Errorf("must specify output directory (--outdir)")
 			}
-			ttl := filepath.Join(outdir, "lexicon.ttl")
+			ttl := filepath.Join(outdir, "lexicon_crude.ttl")
 			if err := lex.EmitOntology(schemas, ttl); err != nil {
 				return err
 			}
